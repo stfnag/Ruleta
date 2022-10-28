@@ -17,7 +17,6 @@ public class Ruleta {
         // TODO code application logic here
         
         Persona p = new Persona();
-        p.setNombre(Nombre);
     }
     
 }

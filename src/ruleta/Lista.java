@@ -35,5 +35,13 @@ public class Lista {
        }
     }
     
-    
-}
+    public void eliminar(Nodo n){
+        
+      Nodo sig = n.getSiguiente(); 
+      Nodo ant = n.getAnterior();
+                
+      sig.setAnterior(ant);
+      ant.setSiguiente(sig);
+
+    }
+ }

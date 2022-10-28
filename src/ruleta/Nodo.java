@@ -1,13 +1,8 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package ruleta;
+ */package ruleta;
 
-/**
- *
- * @author estef
- */
 public class Nodo {
     private Nodo siguiente, anterior;
     private Persona participante;
@@ -37,8 +32,5 @@ public class Nodo {
 
     public void setParticipante(Persona participante) {
         this.participante = participante;
-    }
-    
-    
-    
+    }   
 }

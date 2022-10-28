@@ -1,18 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ruleta;
 
-/**
- *
- * @author estef
- */
 public class Persona {
     private String Nombre, Apellido, Cedula;
     private Integer Edad;
+    private Boolean vivo; 
 
     public Persona() {}
+
+    public Boolean getVivo() {
+        return vivo;
+    }
 
     public String getNombre() {
         return Nombre;
@@ -42,6 +39,10 @@ public class Persona {
         this.Cedula = Cedula;
     }
 
+    public void setVivo(Boolean vivo) {
+        this.vivo = vivo;
+    }
+    
     public void setEdad(Integer Edad) {
         this.Edad = Edad;
     }

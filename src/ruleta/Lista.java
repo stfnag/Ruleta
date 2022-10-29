@@ -80,10 +80,11 @@ public class Lista {
         Nodo aux = cabeza;        
         while (aux != null && this.participantes > 1) {
             
-            if (aux.getParticipante().getArma().disparar()) // aumenta un num, y dice si disparo o no en base al arreglo boolean
+            if (!aux.getParticipante().getArma().disparar()) // aumenta un num, y dice si disparo o no en base al arreglo boolean
             {
-              Nodo aux2 = aux;
-              this.eliminar(aux2);
+            } else {
+                Nodo aux2 = aux;
+                this.eliminar(aux2);
             }
             aux = aux.getSiguiente();
         }

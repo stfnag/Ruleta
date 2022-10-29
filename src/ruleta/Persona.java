@@ -3,18 +3,29 @@ package ruleta;
 public class Persona {
     private String Nombre, Apellido, Cedula;
     private Integer Edad;
-    private Boolean vivo; 
-
-    public Persona() {}
-
-    public Boolean getVivo() {
-        return vivo;
+    private String Arma;
+ 
+    public Persona() {
+        this.Arma.cargar(); // genera 1 integer al azar entre 1 a 6
     }
 
     public String getNombre() {
         return Nombre;
     }
 
+    @Override
+    public String toString() {
+        return Nombre + "," + Apellido + "," + Cedula + "," + Edad + ",";
+    }
+
+    public String getArma() {
+        return Arma;
+    }
+
+    public void setArma(String Arma) {
+        this.Arma = Arma;
+    }
+   
     public String getApellido() {
         return Apellido;
     }
@@ -37,10 +48,6 @@ public class Persona {
 
     public void setCedula(String Cedula) {
         this.Cedula = Cedula;
-    }
-
-    public void setVivo(Boolean vivo) {
-        this.vivo = vivo;
     }
     
     public void setEdad(Integer Edad) {

@@ -31,9 +31,9 @@ public class Ruleta {
             default:
                 System.out.println("Opcion invalida, intentenlo nuevamente");
                 System.out.println("--------------------------------------");
+            }
+        } 
     }
-  } 
- }
 }
 
 

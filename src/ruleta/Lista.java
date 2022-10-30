@@ -71,7 +71,7 @@ public class Lista {
         
       Nodo sig = n.getSiguiente(); 
                 
-      System.out.println("Eliminando a: " + n.getParticipante().getNombre());
+      System.out.println("Se ha eliminado a : " + n.getParticipante().getNombre());
       this.guardarArchivo(n.getParticipante(), Boolean.TRUE);
       this.participantes--;
     }
@@ -80,11 +80,11 @@ public class Lista {
         Nodo aux = cabeza;        
         while (aux != null && this.participantes > 1) {
             
-            if (!aux.getParticipante().getArma()) // aumenta un num, y dice si disparo o no en base al arreglo boolean
+            if (true != !aux.getParticipante().isArma() == true) // aumenta un num, y dice si disparo o no en base al arreglo boolean
             {
-            } else {
                 Nodo aux2 = aux;
                 this.eliminar(aux2);
+            } else {
             }
             aux = aux.getSiguiente();
         }

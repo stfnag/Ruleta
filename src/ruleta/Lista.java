@@ -110,7 +110,7 @@ public class Lista {
             if (aux.getParticipante().getVivo() == false){
                 System.out.println(aux.getParticipante().getNombre() + ": Ha muerto" + " en la partida N: "+ aux.getParticipante().rondasJugadas);
             }else{
-                System.out.println(aux.getParticipante().getNombre() + ": Ha sobrevivo");
+                System.out.println(aux.getParticipante().getNombre() + ": Ha sobrevivido");
             }
             
             

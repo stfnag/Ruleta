@@ -22,7 +22,7 @@ public class Ruleta {
         switch(opcion){
             case "1" -> { 
                 Lista lista = new Lista();
-                lista.jugar();
+                lista.jugar2();
                 }
             case "2" -> { 
                 System.out.println("Gracias por jugar, vuelva pronto");

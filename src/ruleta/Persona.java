@@ -6,7 +6,7 @@ public class Persona {
     private String Arma;
  
     public Persona() {
-        this.Arma.siguienteTiro(); // genera 1 integer al azar entre 1 a 6
+      // genera 1 integer al azar entre 1 a 6
     }
 
     public String getNombre() {

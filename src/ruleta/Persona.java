@@ -4,6 +4,8 @@ public class Persona {
     private String Nombre, Apellido, Cedula;
     private Integer Edad;
     private Boolean Arma;
+    private Boolean vivo;
+    int rondasJugadas;
  
     public Persona() {
      Revolver revolver = new Revolver(); 
@@ -54,6 +56,22 @@ public class Persona {
     
     public void setEdad(Integer Edad) {
         this.Edad = Edad;
+    }
+
+    public Boolean getVivo() {
+        return vivo;
+    }
+
+    public void setVivo(Boolean vivo) {
+        this.vivo = vivo;
+    }
+
+    public int getRondasJugadas() {
+        return rondasJugadas;
+    }
+
+    public void setRondasJugadas(int rondasJugadas) {
+        this.rondasJugadas = rondasJugadas;
     }
     
     

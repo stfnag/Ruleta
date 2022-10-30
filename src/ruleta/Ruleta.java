@@ -20,17 +20,18 @@ public class Ruleta {
         
         opcion = scanner.nextLine();
         switch(opcion){
-            case "1": 
+            case "1" -> { 
                 Lista lista = new Lista();
                 lista.jugar();
-                break;
-            case "2": 
+                }
+            case "2" -> { 
                 System.out.println("Gracias por jugar, vuelva pronto");
                 salir = true;
-                break;
-            default:
+                }
+            default -> {
                 System.out.println("Opcion invalida, intentenlo nuevamente");
                 System.out.println("--------------------------------------");
+                }
             }
         } 
     }

@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Lista {
     private Nodo cabeza, cola;
     private Integer participantes;
+    private int partidas;
 
     public Lista() throws IOException {
     
@@ -48,6 +49,33 @@ public class Lista {
     
     }
     
+    private void guardarArchivoR(Persona p) throws IOException {
+        Nodo aux = cabeza;
+        if (aux.getSiguiente() != cabeza){
+            String archivo = "Perdedores.txt";
+            try(FileWriter fw = new FileWriter(archivo, true);
+                BufferedWriter bw = new BufferedWriter(fw);
+                PrintWriter out = new PrintWriter(bw))
+            {
+                out.println(p.toString());
+            } catch (IOException e) {
+                //exception handling left as an exercise for the reader
+            }
+        }else{
+            String archivo = "Ganador.txt";
+            
+            try(FileWriter fw = new FileWriter(archivo, true);
+                BufferedWriter bw = new BufferedWriter(fw);
+                PrintWriter out = new PrintWriter(bw))
+            {
+                out.println(p.toString());
+            } catch (IOException e) {
+                //exception handling left as an exercise for the reader
+            }
+        }
+    
+    }
+    
     public void ingresar(Persona p){
        
        Nodo nodo = new Nodo();
@@ -76,6 +104,21 @@ public class Lista {
       this.participantes--;
     }
     
+    public void mostrarJugadores(){
+        Nodo aux = cabeza;
+        do{
+            if (aux.getParticipante().getVivo() == false){
+                System.out.println(aux.getParticipante().getNombre() + ": Ha muerto" + " en la partida N: "+ aux.getParticipante().rondasJugadas);
+            }else{
+                System.out.println(aux.getParticipante().getNombre() + ": Ha sobrevivo");
+            }
+            
+            
+            aux = aux.getSiguiente();
+        }while(aux != cabeza);
+        
+    }
+    
     public void jugar() throws IOException {
         Nodo aux = cabeza;        
         while (aux != null && this.participantes > 1) {
@@ -90,5 +133,32 @@ public class Lista {
         }
         
         this.guardarArchivo(aux.getParticipante(), Boolean.FALSE);
+    }
+    
+    public void jugar2() throws IOException {
+        Nodo aux = cabeza;
+        //Nodo prev = null;
+        do{
+            
+            if (aux.getParticipante().isArma() == true) // aumenta un num, y dice si disparo o no en base al arreglo boolean
+            {
+                aux.getParticipante().rondasJugadas ++;
+                aux.getParticipante().setVivo(Boolean.FALSE);
+                guardarArchivoR(aux.getParticipante());
+                //Nodo aux2 = aux;
+                //eliminarJugador(aux2);
+            } else {
+                aux.getParticipante().rondasJugadas ++;
+                aux.getParticipante().setVivo(Boolean.TRUE);
+            }
+            //prev = aux;
+            aux = aux.getSiguiente();
+        }while(aux != cabeza ); //|| this.participantes > 1
+        this.partidas ++;
+        System.out.println("Partida N: "+ this.partidas);
+        this.mostrarJugadores();
+        System.out.println("Quieres avanzar a la otra partida");
+        
+        
     }
  }

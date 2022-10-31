@@ -4,15 +4,15 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Lista {
-    private Nodo cabeza, cola;
-    private Integer participantes;
-    private int partidas;
+    private Nodo cabeza;
+    private Integer participantes, partidas;
 
     public Lista() throws IOException {
     
     cabeza = null;
-    cola = null;
     participantes = 0;
+    this.partidas = 1;
+    this.reiniciarArchivos();
     this.cargarArchivo();
   }  
     
@@ -29,6 +29,26 @@ public class Lista {
                 p.setCedula(datos[3]);
                 this.ingresar(p);
             }
+    }
+    
+    private void reiniciarArchivos() throws IOException {
+        try(FileWriter fw = new FileWriter("Perdedores.txt");
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter out = new PrintWriter(bw))
+        {
+            out.println();
+        } catch (IOException e) {
+            //exception handling left as an exercise for the reader
+        }
+        
+         try(FileWriter fw = new FileWriter("Ganador.txt");
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter out = new PrintWriter(bw))
+        {
+            out.println();
+        } catch (IOException e) {
+            //exception handling left as an exercise for the reader
+        }
     }
     
     private void guardarArchivo(Persona p, Boolean muerto) throws IOException {
@@ -49,116 +69,87 @@ public class Lista {
     
     }
     
-    private void guardarArchivoR(Persona p) throws IOException {
-        Nodo aux = cabeza;
-        if (aux.getSiguiente() != cabeza){
-            String archivo = "Perdedores.txt";
-            try(FileWriter fw = new FileWriter(archivo, true);
-                BufferedWriter bw = new BufferedWriter(fw);
-                PrintWriter out = new PrintWriter(bw))
-            {
-                out.println(p.toString());
-            } catch (IOException e) {
-                //exception handling left as an exercise for the reader
-            }
-        }else{
-            String archivo = "Ganador.txt";
-            
-            try(FileWriter fw = new FileWriter(archivo, true);
-                BufferedWriter bw = new BufferedWriter(fw);
-                PrintWriter out = new PrintWriter(bw))
-            {
-                out.println(p.toString());
-            } catch (IOException e) {
-                //exception handling left as an exercise for the reader
-            }
-        }
-    
-    }
-    
     public void ingresar(Persona p){
        
        Nodo nodo = new Nodo();
        nodo.setParticipante(p);
                
        if(cabeza==null) {
-           cabeza = nodo;
-           cabeza.setSiguiente(cabeza);
-           cola = cabeza;
-           
-       }else{
-         cola.setSiguiente(nodo);
-         nodo.setSiguiente(cabeza);
-         cola = nodo;
-       }
+            nodo.setSiguiente(nodo);
+            nodo.setAnterior(nodo);            
+            cabeza = nodo;
+        } else {
+            Nodo ultimo = cabeza.getAnterior();
+            nodo.setSiguiente(cabeza);
+            nodo.setAnterior(ultimo);
+            cabeza.setAnterior(nodo);
+            ultimo.setSiguiente(nodo);
+        }
        
        this.participantes++;
     }
     
     public void eliminar(Nodo n) throws IOException {
-        
-      Nodo sig = n.getSiguiente(); 
+        if (n == cabeza) {
+                if (this.participantes == 1) {
+                    this.cabeza =null;
+                } else {
+                    Nodo ultimo= cabeza.getAnterior();    
+                    cabeza = cabeza.getSiguiente();
+                    ultimo.setSiguiente(cabeza);
+                    cabeza.setAnterior(ultimo);
+                } 
+            } else {
+                Nodo aux = cabeza;
+                while (aux != n) {
+                    aux = aux.getSiguiente();
+                }
                 
-      System.out.println("Se ha eliminado a : " + n.getParticipante().getNombre());
+                Nodo anterior = aux.getAnterior();
+                aux = aux.getSiguiente();
+                anterior.setSiguiente(aux);
+                aux.setAnterior(anterior);
+            }
+                
       this.guardarArchivo(n.getParticipante(), Boolean.TRUE);
       this.participantes--;
+      System.out.println("Se ha eliminado a : " + n.getParticipante().getNombre());
     }
     
     public void mostrarJugadores(){
         Nodo aux = cabeza;
+        
         do{
-            if (aux.getParticipante().getVivo() == false){
+            if (!aux.getParticipante().getVivo()){
                 System.out.println(aux.getParticipante().getNombre() + ": Ha muerto" + " en la partida N: "+ aux.getParticipante().rondasJugadas);
             }else{
-                System.out.println(aux.getParticipante().getNombre() + ": Ha sobrevivido");
+                System.out.println("El Ganador ha sido : " + aux.getParticipante().getNombre());
             }
-            
             
             aux = aux.getSiguiente();
         }while(aux != cabeza);
         
     }
     
-    public void jugar() throws IOException {
+    public void jugar2() throws IOException {
         Nodo aux = cabeza;        
-        while (aux != null && this.participantes > 1) {
-            
-            if (aux.getParticipante().isArma() == true) // aumenta un num, y dice si disparo o no en base al arreglo boolean
+        
+        while (this.participantes > 1) {
+            //this.mostrarJugadores();
+            if (aux.getParticipante().getArma().disparar()) // aumenta un num, y dice si disparo o no en base al arreglo boolean
             {
-                Nodo aux2 = aux;
-                this.eliminar(aux2);
-            } else {
+                aux.getParticipante().rondasJugadas ++;
+                aux.getParticipante().setVivo(Boolean.FALSE);
+                this.eliminar(aux);
             }
             aux = aux.getSiguiente();
         }
         
         this.guardarArchivo(aux.getParticipante(), Boolean.FALSE);
-    }
-    
-    public void jugar2() throws IOException {
-        Nodo aux = cabeza;
-        //Nodo prev = null;
-        do{
-            
-            if (aux.getParticipante().isArma() == true) // aumenta un num, y dice si disparo o no en base al arreglo boolean
-            {
-                aux.getParticipante().rondasJugadas ++;
-                aux.getParticipante().setVivo(Boolean.FALSE);
-                guardarArchivoR(aux.getParticipante());
-                //Nodo aux2 = aux;
-                //eliminarJugador(aux2);
-            } else {
-                aux.getParticipante().rondasJugadas ++;
-                aux.getParticipante().setVivo(Boolean.TRUE);
-            }
-            //prev = aux;
-            aux = aux.getSiguiente();
-        }while(aux != cabeza ); //|| this.participantes > 1
-        this.partidas ++;
-        System.out.println("Partida N: "+ this.partidas);
         this.mostrarJugadores();
-        System.out.println("Quieres avanzar a la otra partida");
         
-        
+        System.out.println("Quieres jugar otra partida?");
+        System.out.println("1 - Si");
+        System.out.println("2 - Salir del juego");
     }
  }

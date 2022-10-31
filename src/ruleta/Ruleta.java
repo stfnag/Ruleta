@@ -10,11 +10,12 @@ public class Ruleta {
         boolean salir = false;
         String opcion;
         
-        while (!salir) {
         System.out.println("Bienvenido al juego de la Ruleta Rusa");
         System.out.println("En este juego uno de los jugadores tomara un revolver (puede ser de 5 o 6 cartuchos) y abrira el tambor. En el pondra uno o mas proyectiles. Luego gira el tambor al azar, cerrandolo rapidamente de modo que ninguno de los jugadores pueda ver en que recamara se encuentran los cartuchos.");
         System.out.println("1 - Iniciar partida");
         System.out.println("2 -Salir");
+        
+        while (!salir) {
 
         System.out.println("Intoduce un numero: ");
         

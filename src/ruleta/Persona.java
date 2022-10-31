@@ -3,16 +3,21 @@ package ruleta;
 public class Persona {
     private String Nombre, Apellido, Cedula;
     private Integer Edad;
-    private Boolean Arma;
+    private Revolver Arma;
     private Boolean vivo;
     int rondasJugadas;
  
     public Persona() {
-     Revolver revolver = new Revolver(); 
-     this.Arma = revolver.disparar();// genera 1 integer al azar entre 1 a 6
+     this.Arma = new Revolver(); 
+     this.vivo = true;
     }
-    public boolean isArma() {
+
+    public Revolver getArma() {
         return Arma;
+    }
+
+    public void setArma(Revolver Arma) {
+        this.Arma = Arma;
     }
 
     public String getNombre() {
@@ -23,13 +28,7 @@ public class Persona {
     public String toString() {
         return Nombre + "," + Apellido + "," + Cedula + "," + Edad + ",";
     }
-
-    public void setArma(Boolean Arma) {
-        this.Arma = Arma;
-    }
     
-
-   
     public String getApellido() {
         return Apellido;
     }

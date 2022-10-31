@@ -1,7 +1,15 @@
 package ruleta;
 
 public class Nodo {
-    private Nodo siguiente;
+    private Nodo siguiente,anterior;
+
+    public Nodo getAnterior() {
+        return anterior;
+    }
+
+    public void setAnterior(Nodo anterior) {
+        this.anterior = anterior;
+    }
     private Persona participante;
 
     public Nodo getSiguiente() {

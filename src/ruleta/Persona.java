@@ -2,18 +2,22 @@ package ruleta;
 
 public class Persona {
     private String Nombre, Apellido, Cedula;
-    private Integer Edad;
+    private Integer Edad, RondasJugadas;
     private Revolver Arma;
     private Boolean vivo;
-    int rondasJugadas;
  
     public Persona() {
      this.Arma = new Revolver(); 
      this.vivo = true;
+     this.RondasJugadas = 0;
     }
 
     public Revolver getArma() {
         return Arma;
+    }
+    
+    public void aumentarRondas() {
+        this.RondasJugadas++;
     }
 
     public void setArma(Revolver Arma) {
@@ -26,7 +30,7 @@ public class Persona {
 
     @Override
     public String toString() {
-        return Nombre + "," + Apellido + "," + Cedula + "," + Edad + ",";
+        return Nombre + "," + Apellido + "," + Cedula + "," + Edad;
     }
     
     public String getApellido() {
@@ -66,14 +70,7 @@ public class Persona {
     }
 
     public int getRondasJugadas() {
-        return rondasJugadas;
+        return RondasJugadas;
     }
 
-    public void setRondasJugadas(int rondasJugadas) {
-        this.rondasJugadas = rondasJugadas;
-    }
-    
-    
-    
-    
 }

@@ -111,34 +111,18 @@ public class Lista {
                 aux.setAnterior(anterior);
             }
                 
-      this.guardarArchivo(n.getParticipante(), Boolean.TRUE);
-      this.participantes--;
-      System.out.println("Se ha eliminado a : " + n.getParticipante().getNombre());
+        this.guardarArchivo(n.getParticipante(), Boolean.TRUE);
+        this.participantes--;
+        System.out.println("Se ha eliminado a : " + n.getParticipante().getNombre());
     }
     
-    public void mostrarJugadores(){
-        Nodo aux = cabeza;
-        
-        do{
-            if (!aux.getParticipante().getVivo()){
-                System.out.println(aux.getParticipante().getNombre() + ": Ha muerto" + " en la partida N: "+ aux.getParticipante().rondasJugadas);
-            }else{
-                System.out.println("El Ganador ha sido : " + aux.getParticipante().getNombre());
-            }
-            
-            aux = aux.getSiguiente();
-        }while(aux != cabeza);
-        
-    }
-    
-    public void jugar2() throws IOException {
+    public void jugar() throws IOException {
         Nodo aux = cabeza;        
         
         while (this.participantes > 1) {
-            //this.mostrarJugadores();
+            aux.getParticipante().aumentarRondas();
             if (aux.getParticipante().getArma().disparar()) // aumenta un num, y dice si disparo o no en base al arreglo boolean
             {
-                aux.getParticipante().rondasJugadas ++;
                 aux.getParticipante().setVivo(Boolean.FALSE);
                 this.eliminar(aux);
             }
@@ -146,7 +130,8 @@ public class Lista {
         }
         
         this.guardarArchivo(aux.getParticipante(), Boolean.FALSE);
-        this.mostrarJugadores();
+        
+        System.out.println("El Ganador ha sido : " + aux.getParticipante().getNombre()+ " y ha jugado "+ aux.getParticipante().getRondasJugadas() + " rondas ");
         
         System.out.println("Quieres jugar otra partida?");
         System.out.println("1 - Si");

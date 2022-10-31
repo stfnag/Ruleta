@@ -1,17 +1,17 @@
 package ruleta;
 import java.math.*;
 public class Revolver {
-    private int balacargada, posiciongatillo;
-    private boolean cargado;
+    private Integer balacargada, posiciongatillo;
+    private Boolean cargado;
    
     public Revolver(){
-        balacargada = (int)(Math.random()* 5 + 1);
-        posiciongatillo = (int)(Math.random()* 5 + 1);
+        this.balacargada = (int)(Math.random()* 5 + 1);
+        this.posiciongatillo = (int)(Math.random()* 5 + 1);
         this.cargado = true;
     }
     
     public boolean disparar(){
-        if (!this.cargado) {
+        if (!cargado) {
             return false;
         }
         

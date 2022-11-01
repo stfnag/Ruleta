@@ -26,7 +26,7 @@ public class Lista {
                 p.setNombre(datos[0]);
                 p.setApellido(datos[1]);
                 p.setEdad(Integer.valueOf(datos[2]));
-                p.setCedula(datos[3]);
+                p.setN_jugador(datos[3]);
                 this.ingresar(p);
             }
     }

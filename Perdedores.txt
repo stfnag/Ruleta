@@ -1,10 +1,10 @@
 
-Estefania ,Garcia,5,25
-Kimberly,Carvajal,7,15
-Mario,Ruben,10,21
-Silvestre,Cardenas,1,35
-Marcel,Ruiz,6,40
-Maria,Gomez,2,24
-Santiago,Trivino,3,20
-Ismenia,Martinez,8,19
-Mercedes,Rios,9,30
+Ismenia,Martinez,19,8
+Mario,Ruben,21,10
+Marcel,Ruiz,40,6
+Estefania ,Garcia,25,5
+Mercedes,Rios,30,9
+Santiago,Trivino,20,3
+Luis,Azocar,23,4
+Silvestre,Cardenas,35,1
+Maria,Gomez,24,2
